@@ -581,30 +581,40 @@ sudo gedit default.conf
 
 1.  **Listen Port:** Ensure Nginx listens on the correct port *inside the container*. Given your `docker run -p 127.0.0.1:8085:80` command, Nginx needs to listen on `80`. and also add the port address the backend (Block explorer) is listening, e.g. at 127.0.0.:4123 port
 
-    ```nginx
-    server {
-        listen 80; # Nginx listens on port 80 inside the container
-        server_name localhost;
-        root /usr/share/nginx/html; # This is where the Dockerfile copies your built dist files
-        index index.html index.htm;
+```nginx
 
-        # Frontend SPA routing
-        location / {
-            try_files $uri $uri/ /index.html;
-        }
+server {
+    listen       80; # change Nginx listens on port 80 instead of port 8080 (default) inside the container
+    server_name  localhost;
 
-        # Backend API Proxy (Example)
-        # Adjust this to match your backend's actual address and port
-        location /api/v1/ {
-            proxy_pass http://127.0.0.1:4123/api/v1/; # Proxy requests to your backend API
-            proxy_set_header Host $host;
-            proxy_set_header X-Real-IP $remote_addr;
-            proxy_set_header X-Forwarded-For $proxy_add_x_forwarded_for;
-            proxy_set_header X-Forwarded-Proto $scheme;
-        }
+    #access_log  /var/log/nginx/host.access.log  main;
+
+    # Frontend SPA routing
+    location / {
+        root   /usr/share/nginx/html; # This is where the Dockerfile copies your built dist files
+        index  index.html index.htm;
     }
-    ```
 
+    #error_page  404              /404.html;
+
+    # redirect server error pages to the static page /50x.html
+    #
+    error_page   500 502 503 504  /50x.html;
+    location = /50x.html {
+        root   /usr/share/nginx/html;
+    }
+
+    # Backend API Proxy (Example)
+    # Adjust this to match your backend's actual address and port
+    location /api/v1/ {
+       proxy_pass http://127.0.0.1:4123/api/v1/; # Proxy requests to your backend API
+       proxy_set_header Host $host;
+       proxy_set_header X-Real-IP $remote_addr;
+       proxy_set_header X-Forwarded-For $proxy_add_x_forwarded_for;
+       proxy_set_header X-Forwarded-Proto $scheme;
+    }
+}
+```
       * **`listen 80;`**: This confirms Nginx is listening on port 80 inside the container.
       * **`root /usr/share/nginx/html;`**: This is the standard location where Nginx serves static files in a default Nginx Docker image. Your `Dockerfile` should be copying your `dist` folder contents to this location.
       * **`location / { ... }`**: This block ensures that all frontend routes are handled by serving `index.html` (crucial for Single Page Applications like Vue.js).
