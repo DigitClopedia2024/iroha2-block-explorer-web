@@ -563,7 +563,7 @@ http {
 }
 ```
 
-!! Hing: We will focus on `default.conf` as it's common for serving web applications. We don't do any changes to the nginx.conf file !!
+!! Hing: We will focus on `default.conf` as it's common for serving web applications. We don't do any changes to the original nginx.conf file !!
 
 1.  **Get the Container ID or Name:**
     If you don't already know it, find your container's ID or name:
