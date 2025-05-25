@@ -1,4 +1,4 @@
-Here's our own revised `INSTALLATION.md` incorporating some relevant detailed requirements:
+Here's our own revised `INSTALLATION.md`incorporating some relevant detailed requirements about the Web UI Explorer (frontend) for the private blockchain ledger Iroha V2 (version=2.0.0-rc.2.0 git_commit_sha=5ba8a6ccf) and the Web Explorer as backend (version 0.3.0) with installation date on 15th May 2025.
 
 -----
 
