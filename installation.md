@@ -17,9 +17,9 @@ This document provides a step-by-step guide to set up and run the Web3 project "
       * [Configure Docker Permissions](https://www.google.com/search?q=%23configure-docker-permissions)
       * [Install Gedit (Graphical Text Editor)](https://www.google.com/search?q=%23install-gedit-graphical-text-editor)
         
-2.1  Installation of Iroha V2 Blockchain ledger
+2.1  Installation of Iroha V2 Blockchain ledger ... see full documentation [here](https://docs.iroha.tech/get-started/)
 
-2.2  Installation of Iroha BLock Explorer (backend)
+2.2  Installation of Iroha BLock Explorer (backend) ... see full documentation [here](https://github.com/soramitsu/iroha2-block-explorer-backend)
 
 2.3  [Repository Setup and Version Freezing](https://www.google.com/search?q=%232-repository-setup-and-version-freezing)
       * [Clone the Repository](https://www.google.com/search?q=%23clone-the-repository)
